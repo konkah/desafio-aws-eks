@@ -1,0 +1,4 @@
+.terraform*
+*.tfstate*
+AWS_script_start.sh
+Keys
