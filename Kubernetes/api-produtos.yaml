@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: api-produtos
+spec:
+  containers:
+    - name: api-produtos
+      image: konkah/desafio_api_produtos
