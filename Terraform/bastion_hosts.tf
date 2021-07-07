@@ -1,13 +1,13 @@
-#resource "aws_instance" "desafio_AWS_a" {
+#resource "aws_instance" "desafio_EKS_a" {
 #  ami                         = data.aws_ami.bastion.id
 #  key_name                    = aws_key_pair.bastion_key.key_name
 #  instance_type               = "t2.micro"
-#  subnet_id                   = aws_subnet.desafio_AWS_a_public.id
+#  subnet_id                   = aws_subnet.desafio_EKS_a_public.id
 #  security_groups             = [aws_security_group.allow_ssh_bastion.id]
 #  associate_public_ip_address = true
 #
 #  tags = {
-#    Name = "desafio_AWS_bastion_a"
+#    Name = "desafio_EKS_bastion_a"
 #  }
 #
 #  provisioner "file" {
@@ -30,8 +30,8 @@
 #      "sudo apt update",
 #      "sudo apt upgrade -y",
 #      "sudo apt install -y mysql-client",
-#      "mysql -u${aws_db_instance.desafio_AWS_clientes.username} -p${aws_db_instance.desafio_AWS_clientes.password} -h${aws_db_instance.desafio_AWS_clientes.address} < /tmp/clientes.sql",
-#      "mysql -u${aws_db_instance.desafio_AWS_produtos.username} -p${aws_db_instance.desafio_AWS_produtos.password} -h${aws_db_instance.desafio_AWS_produtos.address} < /tmp/produtos.sql",
+#      "mysql -u${aws_db_instance.desafio_EKS_clientes.username} -p${aws_db_instance.desafio_EKS_clientes.password} -h${aws_db_instance.desafio_EKS_clientes.address} < /tmp/clientes.sql",
+#      "mysql -u${aws_db_instance.desafio_EKS_produtos.username} -p${aws_db_instance.desafio_EKS_produtos.password} -h${aws_db_instance.desafio_EKS_produtos.address} < /tmp/produtos.sql",
 #      "chmod 600 /tmp/bastion_key",
 #    ]
 #  }
@@ -44,30 +44,30 @@
 #  }
 #
 #  depends_on = [
-#    aws_db_instance.desafio_AWS_clientes,
-#    aws_db_instance.desafio_AWS_produtos
+#    aws_db_instance.desafio_EKS_clientes,
+#    aws_db_instance.desafio_EKS_produtos
 #  ]
 #}
 #
 #output "bastion_a" {
-#  value = aws_instance.desafio_AWS_a.public_ip
+#  value = aws_instance.desafio_EKS_a.public_ip
 #}
 #
-#resource "aws_instance" "desafio_AWS_c" {
+#resource "aws_instance" "desafio_EKS_c" {
 #  ami                         = data.aws_ami.bastion.id
 #  key_name                    = aws_key_pair.bastion_key.key_name
 #  instance_type               = "t2.micro"
-#  subnet_id                   = aws_subnet.desafio_AWS_c_public.id
+#  subnet_id                   = aws_subnet.desafio_EKS_c_public.id
 #  security_groups             = [aws_security_group.allow_ssh_bastion.id]
 #  associate_public_ip_address = true
 #
 #  tags = {
-#    Name = "desafio_AWS_bastion_c"
+#    Name = "desafio_EKS_bastion_c"
 #  }
 #}
 #
 #output "bastion_c" {
-#  value = aws_instance.desafio_AWS_c.public_ip
+#  value = aws_instance.desafio_EKS_c.public_ip
 #}
 #
 #data "aws_ami" "bastion" {
@@ -88,7 +88,7 @@
 #
 #resource "aws_security_group" "allow_ssh_bastion" {
 #  description = "Allow SSH Bastion Host"
-#  vpc_id      = aws_vpc.desafio_AWS.id
+#  vpc_id      = aws_vpc.desafio_EKS.id
 #
 #  ingress {
 #    description = "SSH Port"

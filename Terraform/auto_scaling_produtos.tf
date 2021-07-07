@@ -1,19 +1,19 @@
-#resource "aws_autoscaling_group" "desafio_AWS_produtos" {
+#resource "aws_autoscaling_group" "desafio_EKS_produtos" {
 #  min_size         = 2
 #  desired_capacity = 2
 #  max_size         = 4
 #  vpc_zone_identifier = [
-#    aws_subnet.desafio_AWS_c_app.id,
-#    aws_subnet.desafio_AWS_a_app.id
+#    aws_subnet.desafio_EKS_c_app.id,
+#    aws_subnet.desafio_EKS_a_app.id
 #  ]
 #
 #  launch_template {
-#    id      = aws_launch_template.desafio_AWS_produtos.id
+#    id      = aws_launch_template.desafio_EKS_produtos.id
 #    version = "$Latest"
 #  }
 #
 #  target_group_arns = [ 
-#    aws_lb_target_group.desafio_AWS_produtos.arn
+#    aws_lb_target_group.desafio_EKS_produtos.arn
 #  ]
 #
 #  depends_on = [
@@ -21,15 +21,15 @@
 #  ]
 #}
 #
-#resource "aws_lb_target_group" "desafio_AWS_produtos" {
+#resource "aws_lb_target_group" "desafio_EKS_produtos" {
 #  port     = 80
 #  protocol = "HTTP"
-#  vpc_id   = aws_vpc.desafio_AWS.id
+#  vpc_id   = aws_vpc.desafio_EKS.id
 #
 #  tags = var.tags
 #}
 #
-#resource "aws_launch_template" "desafio_AWS_produtos" {
+#resource "aws_launch_template" "desafio_EKS_produtos" {
 #  name_prefix   = "app_produtos"
 #  image_id      = "ami-09e67e426f25ce0d7"
 #  instance_type = "t2.micro"
@@ -39,12 +39,12 @@
 #    resource_type = "instance"
 #
 #    tags = {
-#      Name = "desafio_AWS_produtos"
+#      Name = "desafio_EKS_produtos"
 #    }
 #  }
 #
 #  vpc_security_group_ids = [ 
-#    aws_security_group.desafio_AWS_produtos.id 
+#    aws_security_group.desafio_EKS_produtos.id 
 #  ]
 #
 #  user_data = filebase64("../APIs/produtos.sh")
@@ -54,21 +54,21 @@
 #
 #resource "null_resource" "address_helper_produtos" {
 #  depends_on = [
-#    aws_db_instance.desafio_AWS_clientes,
+#    aws_db_instance.desafio_EKS_clientes,
 #  ]
 #
 #  provisioner "local-exec" {
-#    command = "sed -i \"20c echo \\\"PRODUTOS_RDS = '${aws_db_instance.desafio_AWS_produtos.address}'\\\" > api_produtos/address.py\" ../APIs/produtos.sh"
+#    command = "sed -i \"20c echo \\\"PRODUTOS_RDS = '${aws_db_instance.desafio_EKS_produtos.address}'\\\" > api_produtos/address.py\" ../APIs/produtos.sh"
 #  }
 #
 #  provisioner "local-exec" {
-#    command = "sed -i \"21c echo \\\"CLIENTES_API = '${aws_lb.desafio_AWS.dns_name}'\\\" >> api_produtos/address.py\" ../APIs/produtos.sh"
+#    command = "sed -i \"21c echo \\\"CLIENTES_API = '${aws_lb.desafio_EKS.dns_name}'\\\" >> api_produtos/address.py\" ../APIs/produtos.sh"
 #  }
 #}
 #
-#resource "aws_security_group" "desafio_AWS_produtos" {
+#resource "aws_security_group" "desafio_EKS_produtos" {
 #  description = "API - Produtos"
-#  vpc_id = aws_vpc.desafio_AWS.id
+#  vpc_id = aws_vpc.desafio_EKS.id
 #  
 #  ingress {
 #    description = "HTTP Port"

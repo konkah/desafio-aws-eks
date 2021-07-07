@@ -1,18 +1,18 @@
-#resource "aws_autoscaling_group" "desafio_AWS_clientes" {
+#resource "aws_autoscaling_group" "desafio_EKS_clientes" {
 #  min_size         = 2
 #  desired_capacity = 2
 #  max_size         = 4
 #  vpc_zone_identifier = [
-#    aws_subnet.desafio_AWS_a_app.id,
-#    aws_subnet.desafio_AWS_c_app.id
+#    aws_subnet.desafio_EKS_a_app.id,
+#    aws_subnet.desafio_EKS_c_app.id
 #  ]
 #
 #  target_group_arns = [ 
-#    aws_lb_target_group.desafio_AWS_clientes.arn
+#    aws_lb_target_group.desafio_EKS_clientes.arn
 #  ]
 #
 #  launch_template {
-#    id      = aws_launch_template.desafio_AWS_clientes.id
+#    id      = aws_launch_template.desafio_EKS_clientes.id
 #    version = "$Latest"
 #  }
 #
@@ -21,15 +21,15 @@
 #  ]
 #}
 #
-#resource "aws_lb_target_group" "desafio_AWS_clientes" {
+#resource "aws_lb_target_group" "desafio_EKS_clientes" {
 #  port     = 80
 #  protocol = "HTTP"
-#  vpc_id   = aws_vpc.desafio_AWS.id
+#  vpc_id   = aws_vpc.desafio_EKS.id
 #
 #  tags = var.tags
 #}
 #
-#resource "aws_launch_template" "desafio_AWS_clientes" {
+#resource "aws_launch_template" "desafio_EKS_clientes" {
 #  name_prefix   = "app_clientes"
 #  image_id      = "ami-09e67e426f25ce0d7"
 #  instance_type = "t2.micro"
@@ -39,12 +39,12 @@
 #    resource_type = "instance"
 #
 #    tags = {
-#      Name = "desafio_AWS_clientes"
+#      Name = "desafio_EKS_clientes"
 #    }
 #  }
 #
 #  vpc_security_group_ids = [ 
-#    aws_security_group.desafio_AWS_clientes.id 
+#    aws_security_group.desafio_EKS_clientes.id 
 #  ]
 #
 #  user_data = filebase64("../APIs/clientes.sh")
@@ -54,17 +54,17 @@
 #
 #resource "null_resource" "address_helper_clientes" {
 #  depends_on = [
-#    aws_db_instance.desafio_AWS_clientes,
+#    aws_db_instance.desafio_EKS_clientes,
 #  ]
 #
 #  provisioner "local-exec" {
-#    command = "sed -i \"20c echo \\\"CLIENTES_RDS = '${aws_db_instance.desafio_AWS_clientes.address}'\\\" > api_clientes/address.py\" ../APIs/clientes.sh"
+#    command = "sed -i \"20c echo \\\"CLIENTES_RDS = '${aws_db_instance.desafio_EKS_clientes.address}'\\\" > api_clientes/address.py\" ../APIs/clientes.sh"
 #  }
 #}
 #
-#resource "aws_security_group" "desafio_AWS_clientes" {
+#resource "aws_security_group" "desafio_EKS_clientes" {
 #  description = "API - Clientes"
-#  vpc_id = aws_vpc.desafio_AWS.id
+#  vpc_id = aws_vpc.desafio_EKS.id
 #  
 #  ingress {
 #    description = "HTTP Port"

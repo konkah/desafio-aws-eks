@@ -1,26 +1,26 @@
-#resource "aws_lb" "desafio_AWS" {
+#resource "aws_lb" "desafio_EKS" {
 #  subnets = [
-#    aws_subnet.desafio_AWS_a_public.id,
-#    aws_subnet.desafio_AWS_c_public.id
+#    aws_subnet.desafio_EKS_a_public.id,
+#    aws_subnet.desafio_EKS_c_public.id
 #  ]
 #
 #  name               = "kd-load-balancer"
 #  internal           = false
 #  load_balancer_type = "application"
-#  security_groups    = [aws_security_group.desafio_AWS_lb.id]
+#  security_groups    = [aws_security_group.desafio_EKS_lb.id]
 #
 #  tags = var.tags
 #}
 #
 #output "CLIENTES_API" {
-#  value = aws_lb.desafio_AWS.dns_name
+#  value = aws_lb.desafio_EKS.dns_name
 #}
 #
-#resource "aws_lb_listener" "desafio_AWS" {
+#resource "aws_lb_listener" "desafio_EKS" {
 #  port     = 80
 #  protocol = "HTTP"
 #
-#  load_balancer_arn = aws_lb.desafio_AWS.arn
+#  load_balancer_arn = aws_lb.desafio_EKS.arn
 #
 #  default_action {
 #    type = "fixed-response"
@@ -33,13 +33,13 @@
 #  }
 #}
 #
-#resource "aws_lb_listener_rule" "desafio_AWS_clientes" {
-#  listener_arn = aws_lb_listener.desafio_AWS.arn
+#resource "aws_lb_listener_rule" "desafio_EKS_clientes" {
+#  listener_arn = aws_lb_listener.desafio_EKS.arn
 #  priority     = 99
 #
 #  action {
 #    type             = "forward"
-#    target_group_arn = aws_lb_target_group.desafio_AWS_clientes.arn
+#    target_group_arn = aws_lb_target_group.desafio_EKS_clientes.arn
 #  }
 #
 #  condition {
@@ -55,13 +55,13 @@
 #  }
 #}
 #
-#resource "aws_lb_listener_rule" "desafio_AWS_produtos" {
-#  listener_arn = aws_lb_listener.desafio_AWS.arn
+#resource "aws_lb_listener_rule" "desafio_EKS_produtos" {
+#  listener_arn = aws_lb_listener.desafio_EKS.arn
 #  priority     = 98
 #
 #  action {
 #    type             = "forward"
-#    target_group_arn = aws_lb_target_group.desafio_AWS_produtos.arn
+#    target_group_arn = aws_lb_target_group.desafio_EKS_produtos.arn
 #  }
 #
 #  condition {
@@ -77,9 +77,9 @@
 #  }
 #}
 #
-#resource "aws_security_group" "desafio_AWS_lb" {
+#resource "aws_security_group" "desafio_EKS_lb" {
 #  description = "Load Balancer"
-#  vpc_id = aws_vpc.desafio_AWS.id
+#  vpc_id = aws_vpc.desafio_EKS.id
 #  
 #  ingress {
 #    description = "HTTP Port"
