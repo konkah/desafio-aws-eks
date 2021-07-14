@@ -26,5 +26,7 @@ RUN python3 -m pip install -U wheel
 WORKDIR /var/www/api_produtos
 RUN python3 -m pip install -r requirements.txt
 
+EXPOSE 80
+
 #CMD bash
 CMD python3 manage.py runserver
