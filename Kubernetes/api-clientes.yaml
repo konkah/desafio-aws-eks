@@ -2,7 +2,11 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: api-clientes
+  labels:
+    api: clientes 
 spec:
   containers:
     - name: api-clientes
-      image: konkah/desafio_api_clientes
+      image: konkah/desafio_api_clientes:latest
+      ports:
+        - containerPort: 80

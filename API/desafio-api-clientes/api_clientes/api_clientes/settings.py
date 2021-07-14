@@ -81,7 +81,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'aws_rds_clientes',
-        'USER': 'user',
+        'USER': 'root',
         'PASSWORD': 'PassworD',
         'HOST': CLIENTES_RDS,
         'PORT': '3306',

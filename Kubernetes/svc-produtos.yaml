@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-produtos
+spec:
+  type: NodePort
+  selector:
+    api: produtos
+  ports:
+    - port: 80
+      nodePort: 30000
