@@ -10,6 +10,7 @@ RUN apt install -y curl
 RUN apt install -y nano
 RUN apt install -y unzip
 RUN apt install -y net-tools
+RUN apt install -y telnet
 
 RUN apt install -y python3.8 
 RUN apt install python3-pip -y
